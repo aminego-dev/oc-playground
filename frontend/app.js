@@ -1,5 +1,7 @@
+const BACKEND_URL = window.BACKEND_URL;
+
 async function loadTodos() {
-  const res = await fetch("/api/todos");
+  const res = await fetch(`${BACKEND_URL}/todos`);
   const todos = await res.json();
 
   const list = document.getElementById("todos");
@@ -21,9 +23,7 @@ async function loadTodos() {
 async function addTodo() {
   const input = document.getElementById("task");
 
-  if (!input.value) return;
-
-  await fetch("/api/todos", {
+  await fetch(`${BACKEND_URL}/todos`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ title: input.value })
@@ -34,8 +34,9 @@ async function addTodo() {
 }
 
 async function deleteTodo(id) {
-  await fetch(`/api/todos/${id}`, { method: "DELETE" });
+  await fetch(`${BACKEND_URL}/todos/${id}`, { method: "DELETE" });
   loadTodos();
 }
 
 loadTodos();
+

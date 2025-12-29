@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
   <title>Todo App</title>
 </head>
 <body>
@@ -12,6 +11,12 @@
 
   <ul id="todos"></ul>
 
+  <!-- BACKEND URL injected at runtime -->
+  <script>
+    window.BACKEND_URL = "http://todo-backend-todo-s2i-binary.apps-crc.testing";
+  </script>
+
   <script src="app.js"></script>
 </body>
 </html>
+
