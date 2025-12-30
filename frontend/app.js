@@ -1,29 +1,18 @@
-const API = "/api/todos";
+const input = document.getElementById('new-todo');
+const addBtn = document.getElementById('add-btn');
+const todoList = document.getElementById('todo-list');
 
-async function loadTodos() {
-  const res = await fetch(API);
-  const todos = await res.json();
+addBtn.addEventListener('click', () => {
+    const text = input.value.trim();
+    if (!text) return;
 
-  const list = document.getElementById("list");
-  list.innerHTML = "";
-  todos.forEach(t => {
-    const li = document.createElement("li");
-    li.textContent = t.title;
-    list.appendChild(li);
-  });
-}
+    const li = document.createElement('li');
+    li.innerHTML = `${text} <button class="remove-btn">×</button>`;
+    
+    const removeBtn = li.querySelector('.remove-btn');
+    removeBtn.addEventListener('click', () => li.remove());
 
-async function addTodo() {
-  const title = document.getElementById("todo").value;
-
-  await fetch(API, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ title })
-  });
-
-  loadTodos();
-}
-
-loadTodos();
+    todoList.appendChild(li);
+    input.value = '';
+});
 
