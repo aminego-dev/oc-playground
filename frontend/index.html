@@ -1,20 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Todo App</title>
+  <title>Todo</title>
 </head>
 <body>
-  <h1>Todos</h1>
-
-  <input id="task" placeholder="New todo" />
+  <h1>Todo App</h1>
+  <input id="todo" />
   <button onclick="addTodo()">Add</button>
-
-  <ul id="todos"></ul>
-
-  <!-- BACKEND URL injected at runtime -->
-  <script>
-    window.BACKEND_URL = "http://todo-backend-todo-s2i-binary.apps-crc.testing";
-  </script>
+  <ul id="list"></ul>
 
   <script src="app.js"></script>
 </body>

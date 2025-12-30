@@ -1,40 +1,27 @@
-const BACKEND_URL = window.BACKEND_URL;
+const API = "/api/todos";
 
 async function loadTodos() {
-  const res = await fetch(`${BACKEND_URL}/todos`);
+  const res = await fetch(API);
   const todos = await res.json();
 
-  const list = document.getElementById("todos");
+  const list = document.getElementById("list");
   list.innerHTML = "";
-
-  todos.forEach(todo => {
+  todos.forEach(t => {
     const li = document.createElement("li");
-    li.textContent = todo.title;
-
-    const btn = document.createElement("button");
-    btn.textContent = "❌";
-    btn.onclick = () => deleteTodo(todo.id);
-
-    li.appendChild(btn);
+    li.textContent = t.title;
     list.appendChild(li);
   });
 }
 
 async function addTodo() {
-  const input = document.getElementById("task");
+  const title = document.getElementById("todo").value;
 
-  await fetch(`${BACKEND_URL}/todos`, {
+  await fetch(API, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ title: input.value })
+    body: JSON.stringify({ title })
   });
 
-  input.value = "";
-  loadTodos();
-}
-
-async function deleteTodo(id) {
-  await fetch(`${BACKEND_URL}/todos/${id}`, { method: "DELETE" });
   loadTodos();
 }
 

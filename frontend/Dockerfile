@@ -1,5 +1,6 @@
-FROM nginxinc/nginx-unprivileged:stable
+FROM docker.io/nginxinc/nginx-unprivileged:1.25
 
-COPY . /usr/share/nginx/html
+COPY index.html /usr/share/nginx/html/
+COPY app.js /usr/share/nginx/html/
+COPY default.conf /etc/nginx/conf.d/default.conf
 
-EXPOSE 8080
