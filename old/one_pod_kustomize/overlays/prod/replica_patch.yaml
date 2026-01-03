@@ -1,0 +1,7 @@
+# kustomize/overlays/prod/replica_patch.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-backend
+spec:
+  replicas: 3  # The only thing we want to change
